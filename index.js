@@ -3,11 +3,13 @@ for(var i=0; i<document.querySelectorAll(".drum").length; i++){
 document.querySelectorAll(".drum")[i].addEventListener("click",function(){
     var buttonInnerHTML = this.innerHTML;
     keyPressed(buttonInnerHTML);
+    buttonAnimation(buttonInnerHTML);
 });
 }
 // detect keypress
 document.addEventListener("keydown",function(event){
     keyPressed(event.key);
+    buttonAnimation(event.key);
 });
 
 // functions that changes the sounds
@@ -47,5 +49,14 @@ function keyPressed (buttonInnerHTML){
         default:
             console.log(this.innerHTML);
             break;
-        }
-    }
+     }
+ }
+
+ function buttonAnimation(currentKey) {
+     var activeButton = document.querySelector("."+currentKey);
+     activeButton.classList.add("pressed");
+
+     setTimeout (function () {
+        activeButton.classList.remove("pressed"); 
+     }, 100);
+ }
